@@ -5,103 +5,211 @@
 ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
 ![Prisma](https://img.shields.io/badge/Prisma-%232D3748.svg?style=for-the-badge&logo=Prisma&logoColor=white)
 
-Uma API REST simples e robusta para um sistema de lista de tarefas (To-Do List), desenvolvida como um estudo prático de boas práticas em Node.js, incluindo arquitetura por features e tratamento de erros.
+A simple and robust REST API for a To-Do List system, developed as a practical study of Node.js best practices, including a feature-based architecture and error handling.
 
 ---
 
 ## ✨ Features
 
-* **Criar** uma nova tarefa.
-* **Listar** todas as tarefas existentes.
-* **Obter** uma tarefa específica pelo seu ID.
-* **Atualizar** o status de uma tarefa (concluída/não concluída).
-* **Deletar** uma tarefa.
+* **Create** a new task.
+* **List** all existing tasks.
+* **Get** a specific task by its ID.
+* **Update** a task's status (toggle completed/pending).
+* **Delete** a task.
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## 🛠️ Tech Stack
 
-Este projeto foi construído utilizando um stack moderno e eficiente:
+This project was built using a modern and efficient stack:
 
-* **Node.js**: Ambiente de execução JavaScript no lado do servidor.
-* **TypeScript**: Superset do JavaScript que adiciona tipagem estática.
-* **Express**: Framework minimalista para a construção da API.
-* **Prisma**: ORM de próxima geração para comunicação com o banco de dados.
-* **Zod**: Biblioteca para validação de esquemas e tipos.
-* **Helmet**: Middleware de segurança que define vários cabeçalhos HTTP.
-* **tsx**: Executa arquivos TypeScript diretamente em desenvolvimento, sem a necessidade de uma etapa de build.
+* **Node.js**: Server-side JavaScript runtime environment.
+* **TypeScript**: A typed superset of JavaScript.
+* **Express**: Minimalist web framework for building the API.
+* **Prisma**: Next-generation ORM for database communication.
+* **Zod**: A TypeScript-first schema validation library.
+* **Helmet**: Security middleware that sets various HTTP headers.
+* **tsx**: A tool to run TypeScript files directly in development without a build step.
 
 ---
 
-## 🚀 Como Rodar o Projeto
+## 🚀 Getting Started
 
-Siga os passos abaixo para configurar e executar o projeto em seu ambiente local.
+Follow the steps below to set up and run the project in your local environment.
 
-### Pré-requisitos
+### Prerequisites
 
-* [Node.js](https://nodejs.org/en/) (versão 18 ou superior)
-* Um banco de dados compatível com o Prisma (ex: PostgreSQL, MySQL, SQLite)
+* [Node.js](https://nodejs.org/en/) (v18 or higher)
+* A Prisma-compatible database (e.g., PostgreSQL, MySQL, SQLite)
 
-### Passos
+### Installation & Setup
 
-1.  **Clone o repositório:**
+1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/Jbampa/to-do-api.git
+    git clone [https://github.com/Jbampa/to-do-api.git](https://github.com/Jbampa/to-do-api.git)
     cd to-do-api
     ```
 
-2.  **Instale as dependências:**
+2.  **Install dependencies:**
     ```bash
     npm install
     ```
 
-3.  **Configure as variáveis de ambiente:**
-    * Crie uma cópia do arquivo `.env.example` e renomeie para `.env`.
-    * Preencha a variável `DATABASE_URL` com a string de conexão do seu banco de dados.
-    * Defina a `PORT` em que o servidor irá rodar (ex: `PORT=3000`).
+3.  **Set up environment variables:**
+    * Create a copy of the `.env.example` file and rename it to `.env`.
+    * Fill in the `DATABASE_URL` variable with your database connection string.
+    * Set the `PORT` on which the server will run (e.g., `PORT=3000`).
 
-4.  **Execute as migrações do Prisma:**
-    Este comando irá criar as tabelas do banco de dados com base no seu `schema.prisma`.
+4.  **Run the Prisma migrations:**
+    This command will create the database tables based on your `schema.prisma` file.
     ```bash
     npx prisma migrate dev
     ```
 
-5.  **Inicie o servidor de desenvolvimento:**
+5.  **Start the development server:**
     ```bash
     npm run dev
     ```
-    O servidor estará rodando no endereço `http://localhost:3000` (ou na porta que você definiu).
+    The server will be running at `http://localhost:3000` (or the port you defined in `.env`).
 
 ---
 
-## 📖 Endpoints da API
+## 📖 API Endpoints
 
-A API possui os seguintes endpoints para manipulação de tarefas:
+The API has the following endpoints for task manipulation:
 
-| Método | URL          | Descrição                                         | Corpo da Requisição (Exemplo)               | Resposta de Sucesso (Exemplo)             |
-| :----- | :----------- | :------------------------------------------------ | :------------------------------------------ | :---------------------------------------- |
-| `POST` | `/tasks`     | Cria uma nova tarefa.                             | `{ "title": "Estudar testes automatizados" }` | `201 Created` com a tarefa criada         |
-| `GET`  | `/tasks`     | Lista todas as tarefas cadastradas.               | N/A                                         | `200 OK` com a lista de tarefas           |
-| `GET`  | `/tasks/:id` | Obtém uma tarefa específica pelo seu ID.          | N/A                                         | `200 OK` com os dados da tarefa           |
-| `PATCH`| `/tasks/:id` | Atualiza o status de uma tarefa (toggle).         | N/A                                         | `200 OK` com os dados da tarefa atualizada|
-| `DELETE`| `/tasks/:id` | Deleta uma tarefa específica pelo seu ID.         | N/A                                         | `200 OK` com uma mensagem de sucesso      |
+| Method | URL          | Description                       | Request Body (Example)                      | Success Response (Example)                   |
+| :----- | :----------- | :-------------------------------- | :------------------------------------------ | :------------------------------------------- |
+| `POST` | `/tasks`     | Creates a new task.               | `{ "title": "Study automated testing" }`      | `201 Created` with the created task object   |
+| `GET`  | `/tasks`     | Lists all registered tasks.       | N/A                                         | `200 OK` with the list of tasks              |
+| `GET`  | `/tasks/:id` | Gets a specific task by its ID.   | N/A                                         | `200 OK` with the task data                  |
+| `PATCH`| `/tasks/:id` | Updates a task's status (toggle). | N/A                                         | `200 OK` with the updated task data          |
+| `DELETE`| `/tasks/:id` | Deletes a specific task by its ID.| N/A                                         | `200 OK` with a success message              |
+
+---
+
+## 📂 Folder Structure
+
+The project uses a **feature-based architecture**, aiming for scalability and code organization. All logic related to a business entity (in this case, `task`) is contained within its own module, facilitating maintenance and the addition of new features.
+
+Claro, com certeza. Aqui está a versão em inglês do README, formatada dentro de um único bloco para facilitar o "copiar e colar".
+
+Você pode clicar no botão "Copiar" no canto superior direito do bloco abaixo e colar todo o conteúdo diretamente no seu arquivo README.md.
+
+Markdown
+
+# To-Do List API 📝
+
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![Node.js](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![Prisma](https://img.shields.io/badge/Prisma-%232D3748.svg?style=for-the-badge&logo=Prisma&logoColor=white)
+
+A simple and robust REST API for a To-Do List system, developed as a practical study of Node.js best practices, including a feature-based architecture and error handling.
 
 ---
 
-## 📂 Estrutura de Pastas
+## ✨ Features
 
-O projeto utiliza uma arquitetura baseada em **features**, visando a escalabilidade e organização do código. Toda a lógica relacionada a uma entidade de negócio (neste caso, `task`) fica contida em seu próprio módulo, facilitando a manutenção e a adição de novas funcionalidades.
-
-```
-/src
-  /features
-    /task
-      - task.controller.ts
-      - task.service.ts
-      - task.routes.ts
-      - ...
-  /middlewares
-  - server.ts
-```
+* **Create** a new task.
+* **List** all existing tasks.
+* **Get** a specific task by its ID.
+* **Update** a task's status (toggle completed/pending).
+* **Delete** a task.
 
 ---
+
+## 🛠️ Tech Stack
+
+This project was built using a modern and efficient stack:
+
+* **Node.js**: Server-side JavaScript runtime environment.
+* **TypeScript**: A typed superset of JavaScript.
+* **Express**: Minimalist web framework for building the API.
+* **Prisma**: Next-generation ORM for database communication.
+* **Zod**: A TypeScript-first schema validation library.
+* **Helmet**: Security middleware that sets various HTTP headers.
+* **tsx**: A tool to run TypeScript files directly in development without a build step.
+
+---
+
+## 🚀 Getting Started
+
+Follow the steps below to set up and run the project in your local environment.
+
+### Prerequisites
+
+* [Node.js](https://nodejs.org/en/) (v18 or higher)
+* A Prisma-compatible database (e.g., PostgreSQL, MySQL, SQLite)
+
+### Installation & Setup
+
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/Jbampa/to-do-api.git](https://github.com/Jbampa/to-do-api.git)
+    cd to-do-api
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+3.  **Set up environment variables:**
+    * Create a copy of the `.env.example` file and rename it to `.env`.
+    * Fill in the `DATABASE_URL` variable with your database connection string.
+    * Set the `PORT` on which the server will run (e.g., `PORT=3000`).
+
+4.  **Run the Prisma migrations:**
+    This command will create the database tables based on your `schema.prisma` file.
+    ```bash
+    npx prisma migrate dev
+    ```
+
+5.  **Start the development server:**
+    ```bash
+    npm run dev
+    ```
+    The server will be running at `http://localhost:3000` (or the port you defined in `.env`).
+
+---
+
+## 📖 API Endpoints
+
+The API has the following endpoints for task manipulation:
+
+| Method | URL          | Description                       | Request Body (Example)                      | Success Response (Example)                   |
+| :----- | :----------- | :-------------------------------- | :------------------------------------------ | :------------------------------------------- |
+| `POST` | `/tasks`     | Creates a new task.               | `{ "title": "Study automated testing" }`      | `201 Created` with the created task object   |
+| `GET`  | `/tasks`     | Lists all registered tasks.       | N/A                                         | `200 OK` with the list of tasks              |
+| `GET`  | `/tasks/:id` | Gets a specific task by its ID.   | N/A                                         | `200 OK` with the task data                  |
+| `PATCH`| `/tasks/:id` | Updates a task's status (toggle). | N/A                                         | `200 OK` with the updated task data          |
+| `DELETE`| `/tasks/:id` | Deletes a specific task by its ID.| N/A                                         | `200 OK` with a success message              |
+
+---
+
+## 📂 Folder Structure
+
+The project uses a **feature-based architecture**, aiming for scalability and code organization. All logic related to a business entity (in this case, `task`) is contained within its own module, facilitating maintenance and the addition of new features.
+
+to-do-api/
+├── prisma/
+│   └── schema.prisma
+├── src/
+│   ├── features/
+│   │   └── task/
+│   │       ├── task.controller.ts
+│   │       ├── task.routes.ts
+│   │       ├── task.services.ts
+│   │       ├── task.validate.ts
+│   │       └── task.zod.schema.ts
+│   ├── libs/
+│   │   └── prisma.ts
+│   ├── middlewares/
+│   │   └── errorHandler.ts
+│   └── server.ts
+├── .env
+├── .gitignore
+├── package.json
+├── README.md
+└── tsconfig.json
