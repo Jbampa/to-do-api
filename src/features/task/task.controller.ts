@@ -1,5 +1,5 @@
 import type { RequestHandler } from "express";
-import { createTask } from "./task.services.js";
+import { createTask, deleteTask } from "./task.services.js";
 import { Prisma } from "@prisma/client";
 
 export const createTaskController: RequestHandler = async (req, res) => {
@@ -11,7 +11,7 @@ export const createTaskController: RequestHandler = async (req, res) => {
         })
 
     } catch (err) {
-        
+
         if(err instanceof Prisma.PrismaClientKnownRequestError) {
             if(err.code == 'P2002') {
                 return res.status(409).json({
@@ -26,3 +26,17 @@ export const createTaskController: RequestHandler = async (req, res) => {
     }
 }
 
+export const deleteTaskController: RequestHandler = async (req, res) => {
+    try {
+        const deleteTaskResult = await deleteTask(Number(req.params.id));
+
+        res.status(204).json({
+            deleteTaskResult
+        })
+
+    } catch (err) {
+        res.status(500).json({
+            error: err
+        })
+    }
+}

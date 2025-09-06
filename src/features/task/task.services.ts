@@ -4,10 +4,19 @@ import { prisma } from "../../libs/prisma.js";
 
 
 export const createTask = async (data: Prisma.TaskCreateInput) => {
-    const task = await prisma.task.create({
+    const result = await prisma.task.create({
         data
     })
 
-    return task;
+    return result;
 }
 
+export const deleteTask = async (idNumber: number) => {
+    const result = await prisma.task.delete({
+        where: {
+            id: idNumber
+        }
+    })
+
+    return result;
+}
