@@ -31,7 +31,8 @@ export const deleteTaskController: RequestHandler = async (req, res) => {
         const deleteTaskResult = await deleteTask(Number(req.params.id));
 
         res.status(200).json({
-            success: `Task with id ${req.params.id} deleted`
+            success: `Task with id "${req.params.id}" deleted`,
+            deleteTaskResult
         })
 
     } catch (err) {
@@ -46,7 +47,7 @@ export const updateTaskController: RequestHandler = async (req, res) => {
         const updateResult = await updateTask(Number(req.params.id));
 
         res.status(200).json({
-            success: `Task status with id: "${req.params.id}" updated`,
+            success: `Task status with id "${req.params.id}" updated`,
             updateResult
         })
     } catch (err) {
