@@ -1,5 +1,5 @@
 import type { RequestHandler } from "express";
-import { createTask, deleteTask, updateTask } from "./task.services.js";
+import { createTask, deleteTask, getAllTasks, getTaskById, updateTask } from "./task.services.js";
 import { Prisma } from "@prisma/client";
 
 export const createTaskController: RequestHandler = async (req, res) => {
@@ -53,6 +53,35 @@ export const updateTaskController: RequestHandler = async (req, res) => {
     } catch (err) {
         res.status(500).json({
             error: "Internal server error"
+        })
+    }
+}
+
+export const getAllTasksController: RequestHandler = async (req, res) => {
+    try {
+        const tasks = await getAllTasks();
+
+        res.status(200).json({
+            tasks
+        })
+    } catch(err) {
+
+        res.status(500).json({
+            error: "An unexpected error occurred"
+        })
+    }
+}
+
+export const getTaskByIdController: RequestHandler = async (req, res) => {
+    try {
+ const task = await getTaskById(Number(req.params.id));
+
+        res.status(200).json({
+            task
+        })
+    } catch (err) {
+        res.status(500).json({
+            error: "An unexpected error occurred"
         })
     }
 }
