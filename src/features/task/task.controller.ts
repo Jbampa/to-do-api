@@ -1,6 +1,7 @@
 import type { RequestHandler } from "express";
-import { createTask, deleteTask } from "./task.services.js";
+import { createTask, deleteTask, updateTask } from "./task.services.js";
 import { Prisma } from "@prisma/client";
+import { success } from "zod";
 
 export const createTaskController: RequestHandler = async (req, res) => {
     try {
@@ -34,6 +35,21 @@ export const deleteTaskController: RequestHandler = async (req, res) => {
             deleteTaskResult
         })
 
+    } catch (err) {
+        res.status(500).json({
+            error: err
+        })
+    }
+}
+
+export const updateTaskController: RequestHandler = (req, res) => {
+    try {
+        const updateResult = updateTask(Number(req.params.id));
+
+        res.status(200).json({
+            success: `Task status with id: "${req.params.id}" updated`,
+            updateResult
+        })
     } catch (err) {
         res.status(500).json({
             error: err

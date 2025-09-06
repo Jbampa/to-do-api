@@ -20,3 +20,31 @@ export const deleteTask = async (idNumber: number) => {
 
     return result;
 }
+
+export const updateTask = async (idNumber: number) => {
+    const task = await prisma.task.findUnique({
+        where: {
+            id: idNumber
+        }
+    })
+
+    if(task) {
+        const newStatus = !task.status; 
+        console.log(newStatus);
+
+        const updatedTask = prisma.task.update({
+            where: {
+                id: idNumber
+            },
+            data: {
+                status: newStatus
+            }
+        })
+
+        return updatedTask;
+    }
+
+
+
+    return task;
+}
