@@ -47,7 +47,7 @@ Siga os passos abaixo para configurar e executar o projeto em seu ambiente local
 1.  **Clone o repositório:**
     ```bash
     git clone [https://github.com/Jbampa/to-do-api.git](https://github.com/Jbampa/to-do-api.git)
-    cd seu-repositorio
+    cd to-do-api
     ```
 
 2.  **Instale as dependências:**
