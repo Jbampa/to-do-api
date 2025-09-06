@@ -13,10 +13,10 @@ mainRoutes.get('/', (req, res) => {
     })
 })
 
-mainRoutes.post('/task', validateBody(taskSchema), createTaskController)
-mainRoutes.delete('/taskDelete/:id', deleteTaskController);
-mainRoutes.patch('/task/:id', updateTaskController);
-mainRoutes.get('/task', getAllTasksController)
-mainRoutes.get('/task/:id', getTaskByIdController)
+mainRoutes.post('/tasks', validateBody(taskSchema), createTaskController)
+mainRoutes.delete('/tasks/:id', deleteTaskController);
+mainRoutes.patch('/tasks/:id', updateTaskController);
+mainRoutes.get('/tasks', getAllTasksController)
+mainRoutes.get('/tasks/:id', getTaskByIdController)
 
 export default mainRoutes;
