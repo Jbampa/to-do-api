@@ -1,14 +1,13 @@
 import type { RequestHandler } from "express";
 import { createTask, deleteTask, updateTask } from "./task.services.js";
 import { Prisma } from "@prisma/client";
-import { success } from "zod";
 
 export const createTaskController: RequestHandler = async (req, res) => {
     try {
         const result = await createTask(req.body as Prisma.TaskCreateInput);
 
         res.status(201).json({
-            data: result
+            success: result
         })
 
     } catch (err) {
@@ -22,7 +21,7 @@ export const createTaskController: RequestHandler = async (req, res) => {
         }
 
         res.status(500).json({
-            error: err
+            error: "Internal server error"
         })
     }
 }
@@ -31,20 +30,20 @@ export const deleteTaskController: RequestHandler = async (req, res) => {
     try {
         const deleteTaskResult = await deleteTask(Number(req.params.id));
 
-        res.status(204).json({
-            deleteTaskResult
+        res.status(200).json({
+            success: `Task with id ${req.params.id} deleted`
         })
 
     } catch (err) {
         res.status(500).json({
-            error: err
+            error: "Internal server error"
         })
     }
 }
 
-export const updateTaskController: RequestHandler = (req, res) => {
+export const updateTaskController: RequestHandler = async (req, res) => {
     try {
-        const updateResult = updateTask(Number(req.params.id));
+        const updateResult = await updateTask(Number(req.params.id));
 
         res.status(200).json({
             success: `Task status with id: "${req.params.id}" updated`,
@@ -52,7 +51,7 @@ export const updateTaskController: RequestHandler = (req, res) => {
         })
     } catch (err) {
         res.status(500).json({
-            error: err
+            error: "Internal server error"
         })
     }
 }

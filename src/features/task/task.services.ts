@@ -32,7 +32,7 @@ export const updateTask = async (idNumber: number) => {
         const newStatus = !task.status; 
         console.log(newStatus);
 
-        const updatedTask = prisma.task.update({
+        const result = prisma.task.update({
             where: {
                 id: idNumber
             },
@@ -41,10 +41,8 @@ export const updateTask = async (idNumber: number) => {
             }
         })
 
-        return updatedTask;
+        return result;
     }
-
-
 
     return task;
 }
