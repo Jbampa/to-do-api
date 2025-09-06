@@ -1,6 +1,6 @@
 import express from 'express';
 import helmet from 'helmet';
-import mainRoutes from './routes/index.js';
+import mainRoutes from './features/task/task.routes.js';
 
 const server = express();
 const port = process.env.PORT;
