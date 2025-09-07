@@ -185,31 +185,3 @@ The API has the following endpoints for task manipulation:
 | `GET`  | `/tasks/:id` | Gets a specific task by its ID.   | N/A                                         | `200 OK` with the task data                  |
 | `PATCH`| `/tasks/:id` | Updates a task's status (toggle). | N/A                                         | `200 OK` with the updated task data          |
 | `DELETE`| `/tasks/:id` | Deletes a specific task by its ID.| N/A                                         | `200 OK` with a success message              |
-
----
-
-## 📂 Folder Structure
-
-The project uses a **feature-based architecture**, aiming for scalability and code organization. All logic related to a business entity (in this case, `task`) is contained within its own module, facilitating maintenance and the addition of new features.
-
-to-do-api/
-├── prisma/
-│   └── schema.prisma
-├── src/
-│   ├── features/
-│   │   └── task/
-│   │       ├── task.controller.ts
-│   │       ├── task.routes.ts
-│   │       ├── task.services.ts
-│   │       ├── task.validate.ts
-│   │       └── task.zod.schema.ts
-│   ├── libs/
-│   │   └── prisma.ts
-│   ├── middlewares/
-│   │   └── errorHandler.ts
-│   └── server.ts
-├── .env
-├── .gitignore
-├── package.json
-├── README.md
-└── tsconfig.json
